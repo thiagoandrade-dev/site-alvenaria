@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlvenarIA - Inteligência Construtiva</title>
+    <!-- Fontes Google para replicar o design futurista -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #040A15;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --cyan-neon: #00F0FF;
+            --cyan-glow: rgba(0, 240, 255, 0.2);
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo-text, .futuristic-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        a { text-decoration: none; }
+
+        /* Container Padrão */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Nav Header estilo Pílula Vidro */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(10, 15, 30, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            z-index: 1000;
+        }
+
+        .logo-placeholder {
+            border: 1px dashed var(--border-glass);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--cyan-neon); }
+
+        .btn-outline {
+            border: 1px solid var(--cyan-neon);
+            color: var(--cyan-neon);
+            padding: 8px 20px;
+            border-radius: 30px;
+            background: transparent;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: var(--cyan-neon);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px var(--cyan-glow);
+        }
+
+        .btn-primary {
+            background: var(--cyan-neon);
+            color: var(--bg-dark);
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 20px var(--cyan-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        #hero {
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .badge {
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            color: var(--cyan-neon);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .cyan-text { color: var(--cyan-neon); }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 20px 40px;
+            min-width: 200px;
+        }
+
+        .stat-card h3 { font-size: 2rem; margin-bottom: 4px; }
+        .stat-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* General Section Styles */
+        section { padding: 100px 0; }
+        .section-tag {
+            color: var(--cyan-neon);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+            display: block;
+        }
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        /* Grid System (Glass Cards) */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; }
+
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--cyan-neon);
+            font-size: 20px;
+        }
+
+        .glass-card h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .glass-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Pricing Section */
+        .pricing-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .pricing-card.featured {
+            border: 1px solid var(--cyan-neon);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--cyan-neon);
+            color: var(--bg-dark);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .price-text {
+            font-size: 1.8rem;
+            color: var(--cyan-neon);
+            margin: 24px 0 8px;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            color: var(--cyan-neon);
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card.featured .pricing-btn {
+            background: var(--cyan-neon);
+            color: var(--bg-dark);
+        }
+
+        .pricing-card.featured .pricing-btn:hover { box-shadow: 0 0 15px var(--cyan-glow); }
+
+        /* Demo & Footer Section */
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .widget-placeholder {
+            border: 1px dashed rgba(0, 240, 255, 0.3);
+            border-radius: 20px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            position: relative;
+        }
+
+        .widget-arrow {
+            color: var(--cyan-neon);
+            margin-top: 16px;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-glass);
+            padding: 60px 0 40px;
+            margin-top: 60px;
+        }
+
+        .footer-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-box h3 { font-size: 2rem; text-transform: uppercase; }
+
+        @media (max-width: 768px) {
+            header { display: none; } /* Ocultar nav no mobile para simplificar nesta versão */
+            .demo-container { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="logo-placeholder">
+            <!-- SUBSTITUA POR: <img src="seu-logo.png" height="30" alt="AlvenarIA"> -->
+            [INSERIR LOGO AQUI]
+        </div>
+        <div class="nav-links">
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#solucoes">Soluções</a>
+            <a href="#contato">Contato</a>
+        </div>
+        <a href="#solucoes" class="btn-outline">Diagnóstico IA</a>
+    </header>
+
+    <!-- SEÇÃO HERO -->
+    <section id="hero" class="container">
+        <div class="badge">⚙️ Agentes inteligentes para operação real</div>
+        <h1 class="hero-title">Automação com IA para<br>empresas que querem<br>operar no <span class="cyan-text">modo futuro</span></h1>
+        <p class="hero-subtitle">A AlvenarIA projeta agentes de inteligência artificial e fluxos automatizados que reduzem tarefas manuais, aceleram atendimento e criam operações mais inteligentes para empresas e profissionais liberais.</p>
+        
+        <div class="hero-buttons">
+            <button class="btn-primary">Criar meu agente <span>↻</span></button>
+            <button class="btn-outline" style="border-color: var(--border-glass); color: var(--text-main);">Ver como funciona</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 class="futuristic-font">24h</h3>
+                <p>agentes ativos</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="futuristic-font">-35%</h3>
+                <p>menos retrabalho</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="futuristic-font">IA+</h3>
+                <p>fluxos sob medida</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section id="como-funciona" class="container">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <span class="section-tag">Como funciona a automação</span>
+            <h2 class="section-title">Da análise do processo<br>ao agente em produção</h2>
+            <p style="color: var(--text-muted);">Transformamos rotinas repetitivas em sistemas inteligentes,<br>medindo impacto desde o primeiro fluxo automatizado.</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="glass-card">
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="card-icon">📈</div>
+                    <span class="futuristic-font" style="color: var(--border-glass); font-size: 1.5rem;">01</span>
+                </div>
+                <h3 class="futuristic-font">Mapeamos gargalos</h3>
+                <p>Identificamos tarefas manuais, pontos de atrito e oportunidades de automação com maior retorno operacional.</p>
+            </div>
+            <div class="glass-card">
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="card-icon">🧠</div>
+                    <span class="futuristic-font" style="color: var(--border-glass); font-size: 1.5rem;">02</span>
+                </div>
+                <h3 class="futuristic-font">Construímos agentes</h3>
+                <p>Criamos agentes de IA, integrações e fluxos que executam tarefas, respondem clientes e organizam dados sem fricção.</p>
+            </div>
+            <div class="glass-card">
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="card-icon">↻</div>
+                    <span class="futuristic-font" style="color: var(--border-glass); font-size: 1.5rem;">03</span>
+                </div>
+                <h3 class="futuristic-font">Medimos e evoluímos</h3>
+                <p>Acompanhamos performance, refinamos respostas e ampliamos automações conforme sua operação ganha maturidade.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 20px;">
+            <div>
+                <span class="section-tag">Benefícios</span>
+                <h2 class="section-title" style="margin-bottom: 0;">Menos custo<br>operacional. Mais<br>disponibilidade e escala.</h2>
+            </div>
+            <p style="color: var(--text-muted); max-width: 300px;">Cada automação nasce conectada ao processo, não a uma promessa genérica.</p>
+        </div>
+
+        <div class="grid-2">
+            <div class="glass-card">
+                <div class="card-icon">📉</div>
+                <h3 class="futuristic-font">Redução de custos</h3>
+                <p>Agentes assumem tarefas repetitivas, diminuem retrabalho e liberam o time para decisões de maior valor.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">📅</div>
+                <h3 class="futuristic-font">Atendimento 24h</h3>
+                <p>Clientes recebem respostas imediatas, triagem inteligente e encaminhamento correto mesmo fora do horário comercial.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">↗️</div>
+                <h3 class="futuristic-font">Operação escalável</h3>
+                <p>Aumente o volume de atendimentos e processos sem precisar multiplicar o tamanho da sua equipe na mesma proporção.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon">⚡</div>
+                <h3 class="futuristic-font">Menos tarefas manuais</h3>
+                <p>Integração total entre seus sistemas atuais (CRM, planilhas, WhatsApp) funcionando no piloto automático.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUÇÕES (PREÇOS) -->
+    <section id="solucoes" class="container">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <span class="section-tag">Nossas Soluções</span>
+            <h2 class="section-title">Planos para entrar na era<br>dos agentes autônomos</h2>
+            <p style="color: var(--text-muted);">Comece com um produto de prateleira ou conecte<br>toda a operação em um ecossistema sob medida.</p>
+        </div>
+
+        <div class="grid-3">
+            <!-- Plano 1 -->
+            <div class="glass-card pricing-card">
+                <div>
+                    <div class="card-icon">📅</div>
+                    <span style="color: var(--cyan-neon); font-size: 12px; font-weight: 700; text-transform: uppercase;">Produto de Prateleira</span>
+                    <h3 class="futuristic-font" style="margin-top: 8px;">Agente de Triagem</h3>
+                    <p style="font-size: 12px;">Escritórios e Clínicas</p>
+                    <p style="margin-top: 20px;">Qualifica leads, coleta dados essenciais e agenda reuniões automaticamente para o time certo.</p>
+                    <div class="price-text futuristic-font">A partir de R$ X/mês</div>
+                    <p style="font-size: 12px;">+ Setup de implantação</p>
+                </div>
+                <button class="pricing-btn">Quero triagem automática</button>
+            </div>
+
+            <!-- Plano 2 (Destaque) -->
+            <div class="glass-card pricing-card featured">
+                <div class="featured-badge">MAIS VENDIDO</div>
+                <div>
+                    <div class="card-icon">📈</div>
+                    <span style="color: var(--cyan-neon); font-size: 12px; font-weight: 700; text-transform: uppercase;">Produto de Prateleira</span>
+                    <h3 class="futuristic-font" style="margin-top: 8px;">Assistente de<br>Vendas 24h</h3>
+                    <p style="font-size: 12px;">Comércio e Imobiliário</p>
+                    <p style="margin-top: 20px;">Apresenta catálogos, imóveis e ofertas, tira dúvidas e conduz conversas comerciais pelo WhatsApp.</p>
+                    <div class="price-text futuristic-font">A partir de R$ X/mês</div>
+                    <p style="font-size: 12px;">+ Setup de vendas e catálogo</p>
+                </div>
+                <button class="pricing-btn">Criar assistente 24h</button>
+            </div>
+
+            <!-- Plano 3 -->
+            <div class="glass-card pricing-card">
+                <div>
+                    <div class="card-icon">↻</div>
+                    <span style="color: var(--cyan-neon); font-size: 12px; font-weight: 700; text-transform: uppercase;">Sob Medida</span>
+                    <h3 class="futuristic-font" style="margin-top: 8px;">Ecossistema de<br>Automação</h3>
+                    <p style="font-size: 12px;">Operações complexas</p>
+                    <p style="margin-top: 20px;">Integração completa, fluxos avançados, múltiplos agentes e automações conectadas aos sistemas centrais.</p>
+                    <div class="price-text futuristic-font">Sob Consulta</div>
+                    <p style="font-size: 12px;">Diagnóstico, arquitetura e implantação</p>
+                </div>
+                <button class="pricing-btn">Desenhar ecossistema</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMO E RODAPÉ -->
+    <footer id="contato" class="container">
+        <div class="demo-container">
+            <div>
+                <span class="section-tag">Demo ao vivo</span>
+                <h2 class="section-title">Não acredite em<br>nós. Teste agora.</h2>
+                <p style="color: var(--text-muted);">A melhor forma de entender um agente é conversar com um. Deixe este canto reservado para o seu widget real de chat e transforme curiosidade em reunião.</p>
+            </div>
+            <div>
+                <div class="widget-placeholder">
+                    <span style="color: var(--cyan-neon); font-weight: 700;">Espaço livre para widget</span>
+                    <span>canto inferior direito</span>
+                </div>
+                <div class="widget-arrow">
+                    Fale com nosso Agente de IA<br>ali no canto ↘
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-box" style="margin-top: 80px;">
+            <div>
+                <span class="section-tag">Contato</span>
+                <h3 class="futuristic-font">Pronto para automatizar<br>sua operação com IA?</h3>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <button class="btn-outline" style="border-color: var(--border-glass); color: var(--text-main);">📧 contato@alvenaria.com.br</button>
+                <button class="btn-primary">💬 Falar com especialista</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- COLE O SCRIPT DO SEU CHATWOOT EXATAMENTE AQUI -->
+    <!-- ========================================== -->
+    
+    <!-- <script>
+        (function(d,t) {
+            var BASE_URL="https://chat.alvenaria.com.br";
+            ...
+    </script> -->
+
+</body>
+</html>
