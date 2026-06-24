@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlvenarIA - Inteligência Construtiva</title>
-    <!-- Fontes Google para replicar o design futurista -->
+    
+    <!-- Fontes Google -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Biblioteca de Animação (AOS) para o efeito Framer -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
         :root {
             --bg-dark: #040A15;
@@ -37,16 +42,15 @@
 
         a { text-decoration: none; }
 
-        /* Container Padrão */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Nav Header estilo Pílula Vidro */
+        /* Nav Header: Mudamos para 'absolute' para ele NÃO descer junto com a tela */
         header {
-            position: fixed;
+            position: absolute; 
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
@@ -61,14 +65,6 @@
             align-items: center;
             padding: 12px 24px;
             z-index: 1000;
-        }
-
-        .logo-placeholder {
-            border: 1px dashed var(--border-glass);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            color: var(--text-muted);
         }
 
         .nav-links {
@@ -93,6 +89,9 @@
             font-weight: 600;
             font-size: 14px;
             transition: all 0.3s;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .btn-outline:hover {
@@ -111,6 +110,7 @@
             cursor: pointer;
             transition: all 0.3s;
             display: inline-flex;
+            justify-content: center;
             align-items: center;
             gap: 8px;
         }
@@ -274,6 +274,9 @@
             margin-top: 30px;
             cursor: pointer;
             transition: all 0.3s;
+            text-align: center;
+            display: block;
+            box-sizing: border-box;
         }
         
         .pricing-card.featured .pricing-btn {
@@ -332,17 +335,20 @@
         .footer-box h3 { font-size: 2rem; text-transform: uppercase; }
 
         @media (max-width: 768px) {
-            header { display: none; } /* Ocultar nav no mobile para simplificar nesta versão */
+            header { display: none; }
             .demo-container { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.5rem; }
             .section-title { font-size: 2rem; }
+            .hero-buttons { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-<!-- CABEÇALHO -->
-    <header>
+
+    <!-- CABEÇALHO -->
+    <header data-aos="fade-down" data-aos-duration="1000">
         <a href="/">
+            <!-- O logo agora está limpo e redimensionado -->
             <img src="logo-Photoroom.png" style="height: 60px; width: auto;" alt="Logo AlvenarIA">
         </a>
         <div class="nav-links">
@@ -355,16 +361,16 @@
 
     <!-- SEÇÃO HERO -->
     <section id="hero" class="container">
-        <div class="badge">⚙️ Agentes inteligentes para operação real</div>
-        <h1 class="hero-title">Automação com IA para<br>empresas que querem<br>operar no <span class="cyan-text">modo futuro</span></h1>
-        <p class="hero-subtitle">A AlvenarIA projeta agentes de inteligência artificial e fluxos automatizados que reduzem tarefas manuais, aceleram atendimento e criam operações mais inteligentes para empresas e profissionais liberais.</p>
+        <div class="badge" data-aos="fade-up">⚙️ Agentes inteligentes para operação real</div>
+        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">Automação com IA para<br>empresas que querem<br>operar no <span class="cyan-text">modo futuro</span></h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">A AlvenarIA projeta agentes de inteligência artificial e fluxos automatizados que reduzem tarefas manuais, aceleram atendimento e criam operações mais inteligentes para empresas e profissionais liberais.</p>
         
-        <div class="hero-buttons">
-            <a href="https://wa.me/5511971144119" class="pricing-btn">Criar meu agente<span>↻</span></a>
-            <button class="btn-outline" style="border-color: var(--border-glass); color: var(--text-main);">Ver como funciona</button>
+        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+            <a href="https://wa.me/5511971144119" class="btn-primary">Criar meu agente<span>↻</span></a>
+            <a href="#como-funciona" class="btn-outline" style="border-color: var(--border-glass); color: var(--text-main);">Ver como funciona</a>
         </div>
 
-        <div class="stats-grid">
+        <div class="stats-grid" data-aos="fade-up" data-aos-delay="400">
             <div class="stat-card">
                 <h3 class="futuristic-font">24h</h3>
                 <p>agentes ativos</p>
@@ -382,14 +388,14 @@
 
     <!-- COMO FUNCIONA -->
     <section id="como-funciona" class="container">
-        <div style="text-align: center; margin-bottom: 60px;">
+        <div style="text-align: center; margin-bottom: 60px;" data-aos="fade-up">
             <span class="section-tag">Como funciona a automação</span>
             <h2 class="section-title">Da análise do processo<br>ao agente em produção</h2>
             <p style="color: var(--text-muted);">Transformamos rotinas repetitivas em sistemas inteligentes,<br>medindo impacto desde o primeiro fluxo automatizado.</p>
         </div>
 
         <div class="grid-3">
-            <div class="glass-card">
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
                 <div style="display: flex; justify-content: space-between;">
                     <div class="card-icon">📈</div>
                     <span class="futuristic-font" style="color: var(--border-glass); font-size: 1.5rem;">01</span>
@@ -397,7 +403,7 @@
                 <h3 class="futuristic-font">Mapeamos gargalos</h3>
                 <p>Identificamos tarefas manuais, pontos de atrito e oportunidades de automação com maior retorno operacional.</p>
             </div>
-            <div class="glass-card">
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
                 <div style="display: flex; justify-content: space-between;">
                     <div class="card-icon">🧠</div>
                     <span class="futuristic-font" style="color: var(--border-glass); font-size: 1.5rem;">02</span>
@@ -405,7 +411,7 @@
                 <h3 class="futuristic-font">Construímos agentes</h3>
                 <p>Criamos agentes de IA, integrações e fluxos que executam tarefas, respondem clientes e organizam dados sem fricção.</p>
             </div>
-            <div class="glass-card">
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
                 <div style="display: flex; justify-content: space-between;">
                     <div class="card-icon">↻</div>
                     <span class="futuristic-font" style="color: var(--border-glass); font-size: 1.5rem;">03</span>
@@ -418,7 +424,7 @@
 
     <!-- BENEFÍCIOS -->
     <section class="container">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 20px;" data-aos="fade-in">
             <div>
                 <span class="section-tag">Benefícios</span>
                 <h2 class="section-title" style="margin-bottom: 0;">Menos custo<br>operacional. Mais<br>disponibilidade e escala.</h2>
@@ -427,22 +433,22 @@
         </div>
 
         <div class="grid-2">
-            <div class="glass-card">
+            <div class="glass-card" data-aos="fade-right" data-aos-delay="100">
                 <div class="card-icon">📉</div>
                 <h3 class="futuristic-font">Redução de custos</h3>
                 <p>Agentes assumem tarefas repetitivas, diminuem retrabalho e liberam o time para decisões de maior valor.</p>
             </div>
-            <div class="glass-card">
+            <div class="glass-card" data-aos="fade-left" data-aos-delay="200">
                 <div class="card-icon">📅</div>
                 <h3 class="futuristic-font">Atendimento 24h</h3>
                 <p>Clientes recebem respostas imediatas, triagem inteligente e encaminhamento correto mesmo fora do horário comercial.</p>
             </div>
-            <div class="glass-card">
+            <div class="glass-card" data-aos="fade-right" data-aos-delay="300">
                 <div class="card-icon">↗️</div>
                 <h3 class="futuristic-font">Operação escalável</h3>
                 <p>Aumente o volume de atendimentos e processos sem precisar multiplicar o tamanho da sua equipe na mesma proporção.</p>
             </div>
-            <div class="glass-card">
+            <div class="glass-card" data-aos="fade-left" data-aos-delay="400">
                 <div class="card-icon">⚡</div>
                 <h3 class="futuristic-font">Menos tarefas manuais</h3>
                 <p>Integração total entre seus sistemas atuais (CRM, planilhas, WhatsApp) funcionando no piloto automático.</p>
@@ -450,9 +456,9 @@
         </div>
     </section>
 
-    <!-- SOLUÇÕES (PREÇOS) -->
+    <!-- SOLUÇÕES (PREÇOS BASEADOS NA IMAGEM) -->
     <section id="solucoes" class="container">
-        <div style="text-align: center; margin-bottom: 60px;">
+        <div style="text-align: center; margin-bottom: 60px;" data-aos="zoom-in">
             <span class="section-tag">Nossas Soluções</span>
             <h2 class="section-title">Planos para entrar na era<br>dos agentes autônomos</h2>
             <p style="color: var(--text-muted);">Comece com um produto de prateleira ou conecte<br>toda a operação em um ecossistema sob medida.</p>
@@ -460,21 +466,21 @@
 
         <div class="grid-3">
             <!-- Plano 1 -->
-            <div class="glass-card pricing-card">
+            <div class="glass-card pricing-card" data-aos="fade-up" data-aos-delay="100">
                 <div>
                     <div class="card-icon">📅</div>
                     <span style="color: var(--cyan-neon); font-size: 12px; font-weight: 700; text-transform: uppercase;">Produto de Prateleira</span>
                     <h3 class="futuristic-font" style="margin-top: 8px;">Agente de Triagem</h3>
                     <p style="font-size: 12px;">Escritórios e Clínicas</p>
                     <p style="margin-top: 20px;">Qualifica leads, coleta dados essenciais e agenda reuniões automaticamente para o time certo.</p>
-                    <div class="price-text futuristic-font">A partir de R$ X/mês</div>
-                    <p style="font-size: 12px;">+ Setup de implantação</p>
+                    <div class="price-text futuristic-font">A partir de R$ 497/mês</div>
+                    <p style="font-size: 12px;">+ Setup a partir de R$ 1.500</p>
                 </div>
-                <button class="pricing-btn">Quero triagem automática</button>
+                <a href="https://wa.me/5511971144119" class="pricing-btn">Quero triagem automática</a>
             </div>
 
             <!-- Plano 2 (Destaque) -->
-            <div class="glass-card pricing-card featured">
+            <div class="glass-card pricing-card featured" data-aos="fade-up" data-aos-delay="200">
                 <div class="featured-badge">MAIS VENDIDO</div>
                 <div>
                     <div class="card-icon">📈</div>
@@ -482,14 +488,14 @@
                     <h3 class="futuristic-font" style="margin-top: 8px;">Assistente de<br>Vendas 24h</h3>
                     <p style="font-size: 12px;">Comércio e Imobiliário</p>
                     <p style="margin-top: 20px;">Apresenta catálogos, imóveis e ofertas, tira dúvidas e conduz conversas comerciais pelo WhatsApp.</p>
-                    <div class="price-text futuristic-font">A partir de R$ X/mês</div>
-                    <p style="font-size: 12px;">+ Setup de vendas e catálogo</p>
+                    <div class="price-text futuristic-font">A partir de R$ 697/mês</div>
+                    <p style="font-size: 12px;">+ Setup a partir de R$ 2.000</p>
                 </div>
-                <a href="https://wa.me/5511971144119" class="pricing-btn">Criar assistente 24h</a>
+                <a href="https://wa.me/5511971144119" class="pricing-btn">Ativar vendas 24h</a>
             </div>
 
             <!-- Plano 3 -->
-            <div class="glass-card pricing-card">
+            <div class="glass-card pricing-card" data-aos="fade-up" data-aos-delay="300">
                 <div>
                     <div class="card-icon">↻</div>
                     <span style="color: var(--cyan-neon); font-size: 12px; font-weight: 700; text-transform: uppercase;">Sob Medida</span>
@@ -506,7 +512,7 @@
 
     <!-- DEMO E RODAPÉ -->
     <footer id="contato" class="container">
-        <div class="demo-container">
+        <div class="demo-container" data-aos="fade-in">
             <div>
                 <span class="section-tag">Demo ao vivo</span>
                 <h2 class="section-title">Não acredite em<br>nós. Teste agora.</h2>
@@ -514,8 +520,8 @@
             </div>
             <div>
                 <div class="widget-placeholder">
-                    <span style="color: var(--cyan-neon); font-weight: 700;">Espaço livre para widget</span>
-                    <span>canto inferior direito</span>
+                    <span style="color: var(--cyan-neon); font-weight: 700;">Espaço reservado para o Chatwoot</span>
+                    <span>O robô aparecerá por cima disto</span>
                 </div>
                 <div class="widget-arrow">
                     Fale com nosso Agente de IA<br>ali no canto ↘
@@ -523,20 +529,31 @@
             </div>
         </div>
 
-        <div class="footer-box" style="margin-top: 80px;">
+        <div class="footer-box" style="margin-top: 80px;" data-aos="zoom-in-up">
             <div>
                 <span class="section-tag">Contato</span>
                 <h3 class="futuristic-font">Pronto para automatizar<br>sua operação com IA?</h3>
             </div>
             <div style="display: flex; flex-direction: column; gap: 16px;">
-                <button class="btn-outline" style="border-color: var(--border-glass); color: var(--text-main);">📧 contato@alvenaria.com.br</button>
-                <button class="btn-primary">💬 Falar com especialista</button>
+                <a href="mailto:contato@alvenaria.com.br" class="btn-outline" style="border-color: var(--border-glass); color: var(--text-main);">📧 contato@alvenaria.com.br</a>
+                <a href="https://wa.me/5511971144119" class="btn-primary">💬 Falar com especialista</a>
             </div>
         </div>
     </footer>
 
+    <!-- INICIALIZAÇÃO DAS ANIMAÇÕES AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, // Duração da animação em milissegundos
+            once: true,    // Anima apenas uma vez ao descer a tela
+            offset: 100    // Inicia a animação um pouco antes do elemento aparecer
+        });
+    </script>
+
     <!-- ========================================== -->
     <!-- COLE O SCRIPT DO SEU CHATWOOT EXATAMENTE AQUI -->
+    <!-- Ele deve ficar abaixo do script de animação e antes do </body> -->
     <!-- ========================================== -->
     
     <!-- <script>
