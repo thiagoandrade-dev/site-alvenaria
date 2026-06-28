@@ -550,17 +550,23 @@
             offset: 100    // Inicia a animação um pouco antes do elemento aparecer
         });
     </script>
-
-    <!-- ========================================== -->
-    <!-- COLE O SCRIPT DO SEU CHATWOOT EXATAMENTE AQUI -->
-    <!-- Ele deve ficar abaixo do script de animação e antes do </body> -->
-    <!-- ========================================== -->
     
-    <!-- <script>
-        (function(d,t) {
-            var BASE_URL="https://chat.alvenaria.com.br";
-            ...
-    </script> -->
+    <script>
+      (function(d,t) {
+        var BASE_URL="https://chat.alvenaria.com.br";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=BASE_URL+"/packs/js/sdk.js";
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: '6X9NzR6H28FYUbKgYiSZhZi6',
+            baseUrl: BASE_URL
+          })
+        }
+      })(document,"script");
+    </script>
 
 </body>
 </html>
+
